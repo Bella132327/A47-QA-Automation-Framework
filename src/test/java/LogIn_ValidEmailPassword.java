@@ -3,15 +3,20 @@ import org.testng.annotations.Test;
 
 public class LogIn_ValidEmailPassword extends BaseTest {
     @Test
-    public void LogIn_ValidEmailPassword() {
+    public void LogIn_ValidEmailPassword() throws InterruptedException {
 
-        openLoginUrl();
+//        openLoginUrl();
+        openURL();
 
-        enterEmail("aimee.woodside@testpro.io");
+        enterEmail1("aimee.woodside@testpro.io");
 
-        enterPassword("te$t$tudent13");
+        enterPassword1("te$t$tudent13");
 
-        clickLogInbutton();
+//        clickLogInbutton();
+        clickLoginBtn1();
+
+        navigatePageBack();
+        navigatePageForward();
 
         displayAvatarIcon();
     }

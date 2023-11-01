@@ -29,6 +29,7 @@ public class BaseTest {
 
         driver = new ChromeDriver(options);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        driver.manage().window().maximize();
     }
 
     @AfterMethod
@@ -41,11 +42,22 @@ public class BaseTest {
         driver.get(url);
     }
 
+    public static void openURL() {
+        driver.get("https://qa.koel.app/");
+    }
+
     protected static void enterEmail(String email) {
         WebElement emailInput = driver.findElement(By.cssSelector("[type='email']"));
         emailInput.click();
         emailInput.clear();
         emailInput.sendKeys(email);
+    }
+
+    public static void enterEmail1(String emailInput) {
+        WebElement emailField = driver.findElement(By.cssSelector("[type='email']"));
+        emailField.click();
+        emailField.clear();
+        emailField.sendKeys(emailInput);
     }
 
     protected static void enterPassword(String password) {
@@ -55,9 +67,27 @@ public class BaseTest {
         passwordInput.sendKeys(password);
     }
 
+    public static void enterPassword1 (String passwordInput) {
+        WebElement passwordField = driver.findElement(By.cssSelector("[type='password']"));
+        passwordField.click();
+        passwordField.clear();
+        passwordField.sendKeys(passwordInput);
+    }
+
+    public static void clickLoginBtn1 () {
+        WebElement loginBtn = driver.findElement(By.cssSelector("button[type='submit']"));
+        loginBtn.click();
+    }
+
     public void clickLogInbutton() {
         WebElement LogInButton = driver.findElement(By.cssSelector("button[type='submit']"));
         LogInButton.click();
+    }
+
+    public static void displayAvatarIcon1() {
+        WebElement avatarImg = driver.findElement(By.cssSelector("img.avatar"));
+        avatarImg.isDisplayed();
+        
     }
 
     // Profile Tests Helper Functions
@@ -101,6 +131,16 @@ public class BaseTest {
     public String getNotificationMessage() {
         WebElement notificationAlert = driver.findElement(By.cssSelector("div.alertify-logs.top.right"));
         return notificationAlert.getText();
+    }
+
+    public static void navigatePageBack() throws InterruptedException{
+        driver.navigate().back();
+        Thread.sleep(3000);
+    }
+
+    public static void navigatePageForward() throws InterruptedException{
+        driver.navigate().forward();
+        Thread.sleep(3000);
     }
 
 }
